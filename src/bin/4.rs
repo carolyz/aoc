@@ -14,8 +14,8 @@ MXMXAXMASX";
 //     let input =
 //         fs::read_to_string("./input_4.txt").expect("Should have been able to read the file");
 
-    println!("{}", find_xmas(&structure_input(input)));
-    println!("{}", find_x_mas(&structure_input(&input)));
+    println!("{}", part_1(&structure_input(input)));
+    println!("{}", part_2(&structure_input(&input)));
 }
 
 fn structure_input(input: &str) -> String {
@@ -30,7 +30,7 @@ fn structure_input(input: &str) -> String {
         .collect::<String>();
     format!("{}\n{}\n{}", padding, safe_input, padding)
 }
-fn find_xmas(safe_input: &str) -> i32 {
+fn part_1(safe_input: &str) -> i32 {
     // find all instances of "xmas", could be horizontal, vertical, backwards, diagonal
     let mut ans = 0;
     let lines: Vec<&str> = safe_input.lines().collect();
@@ -145,7 +145,7 @@ fn check_diagonal(char_pos: usize, line_len: usize, lines_to_check: Vec<&str>, c
     matches
 }
 
-fn find_x_mas(safe_input: &str) -> i32 {
+fn part_2(safe_input: &str) -> i32 {
     let mut ans = 0;
     let lines: Vec<&str> = safe_input.lines().collect();
 
@@ -155,7 +155,7 @@ fn find_x_mas(safe_input: &str) -> i32 {
             if *char == 'A' {
                 // should not go off the grid because we added the border
                 if char_pos > 1 && char_pos < line.len() - 1 {
-                    ans += check_diagonal_sane(char_pos, lines[line_pos - 1..line_pos + 2].to_owned());
+                    ans += find_x_mas(char_pos, lines[line_pos - 1..line_pos + 2].to_owned());
                 }
             }
         }
@@ -163,7 +163,7 @@ fn find_x_mas(safe_input: &str) -> i32 {
     ans
 }
 
-fn check_diagonal_sane(char_pos:usize, lines_to_check: Vec<&str>) -> i32 {
+fn find_x_mas(char_pos:usize, lines_to_check: Vec<&str>) -> i32 {
     let mut mas_found = 0;
     let mut sam_found = 0;
     let top_chars: Vec<char> = lines_to_check[0].chars().collect();
