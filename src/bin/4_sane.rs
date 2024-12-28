@@ -1,18 +1,18 @@
 use std::fs;
 
 fn main() {
-//     let input = "MMMSXXMASM
-// MSAMXMSMSA
-// AMXSXMAAMM
-// MSAMASMSMX
-// XMASAMXAMM
-// XXAMMXXAMA
-// SMSMSASXSS
-// SAXAMASAAA
-// MAMMMXMMMM
-// MXMXAXMASX";
-    let input =
-        fs::read_to_string("./input_4.txt").expect("Should have been able to read the file");
+    let input = "MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX";
+//     let input =
+//         fs::read_to_string("./input_4.txt").expect("Should have been able to read the file");
     let mut ans = 0;
     
     let lines: Vec<&str> = input.lines().collect();
@@ -44,9 +44,7 @@ fn check(mut x: usize, mut y: usize, step_x: i32, step_y: i32, lines: &Vec<&str>
         new_y += step_y;
         // make sure we don't go off the grid
         if new_x >= 0 && new_y >=0 && new_y < lines.len() as i32 && new_x < lines[0].len() as i32 {
-            if lines[new_y as usize].chars().nth(new_x as usize).unwrap() == letter {
-                continue
-            } else {
+            if lines[new_y as usize].chars().nth(new_x as usize).unwrap() != letter {
                 return 0 // short circuit if we don't see a match
             }
         } else {
