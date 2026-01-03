@@ -11,8 +11,8 @@ SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX";
-//     let input =
-//         fs::read_to_string("./input_4.txt").expect("Should have been able to read the file");
+    //     let input =
+    //         fs::read_to_string("./input_4.txt").expect("Should have been able to read the file");
 
     println!("{}", part_1(&structure_input(input)));
     println!("{}", part_2(&structure_input(&input)));
@@ -43,13 +43,14 @@ fn part_1(safe_input: &str) -> i32 {
                 ans += check_horizontal(char_pos, line.chars().collect());
                 // search vertically up
                 if line_pos >= 4 {
-                    ans += check_vertical(char_pos, lines[line_pos - 3..line_pos].to_owned(), "SAM");
+                    ans +=
+                        check_vertical(char_pos, lines[line_pos - 3..line_pos].to_owned(), "SAM");
                     // search diagonally up
                     ans += check_diagonal(
                         char_pos,
                         line.len(),
                         lines[line_pos - 3..line_pos].to_owned(),
-                        "SAM"
+                        "SAM",
                     );
                 }
                 // search vertically down
@@ -64,9 +65,8 @@ fn part_1(safe_input: &str) -> i32 {
                         char_pos,
                         line.len(),
                         lines[line_pos + 1..line_pos + 4].to_owned(),
-                        "MAS"
+                        "MAS",
                     );
-     
                 }
             }
         }
@@ -97,7 +97,7 @@ fn check_vertical(char_pos: usize, lines_to_check: Vec<&str>, check_for: &str) -
         .iter()
         .map(|l| l.chars().nth(char_pos).unwrap())
         .collect();
-    
+
     let test_string = test_vec.iter().collect::<String>();
     if test_string == check_for {
         matches += 1;
@@ -105,23 +105,28 @@ fn check_vertical(char_pos: usize, lines_to_check: Vec<&str>, check_for: &str) -
     matches
 }
 
-fn check_diagonal(char_pos: usize, line_len: usize, lines_to_check: Vec<&str>, check_for: &str) -> i32 {
+fn check_diagonal(
+    char_pos: usize,
+    line_len: usize,
+    lines_to_check: Vec<&str>,
+    check_for: &str,
+) -> i32 {
     let mut matches = 0;
 
     if char_pos <= line_len - 4 {
         let mut test_vec: Vec<char> = vec![];
         // go to the right
         for (i, line) in lines_to_check.iter().enumerate() {
-            if check_for=="SAM" {
+            if check_for == "SAM" {
                 test_vec.push(line.chars().nth(char_pos + 3 - i).unwrap());
             }
-            if check_for=="MAS" {
+            if check_for == "MAS" {
                 test_vec.push(line.chars().nth(char_pos + i + 1).unwrap());
             }
         }
 
         let test_string = test_vec.iter().collect::<String>();
-        
+
         if test_string == check_for {
             matches += 1;
         }
@@ -130,10 +135,10 @@ fn check_diagonal(char_pos: usize, line_len: usize, lines_to_check: Vec<&str>, c
         let mut test_vec: Vec<char> = vec![];
         // go to the left
         for (i, line) in lines_to_check.iter().enumerate() {
-            if check_for=="SAM" {
+            if check_for == "SAM" {
                 test_vec.push(line.chars().nth(char_pos - 3 + i).unwrap());
             }
-            if check_for=="MAS" {
+            if check_for == "MAS" {
                 test_vec.push(line.chars().nth(char_pos - i - 1).unwrap());
             }
         }
@@ -163,7 +168,7 @@ fn part_2(safe_input: &str) -> i32 {
     ans
 }
 
-fn find_x_mas(char_pos:usize, lines_to_check: Vec<&str>) -> i32 {
+fn find_x_mas(char_pos: usize, lines_to_check: Vec<&str>) -> i32 {
     let mut mas_found = 0;
     let mut sam_found = 0;
     let top_chars: Vec<char> = lines_to_check[0].chars().collect();
@@ -188,9 +193,9 @@ fn find_x_mas(char_pos:usize, lines_to_check: Vec<&str>) -> i32 {
             sam_found += 1;
         }
     }
-    
+
     if mas_found + sam_found > 1 {
-        return 1
+        return 1;
     }
     0
 }

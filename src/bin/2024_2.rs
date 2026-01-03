@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::fs;
 
 fn main() {
-        let input = "7 6 4 2 1
+    let input = "7 6 4 2 1
     1 2 7 8 9
     9 7 6 2 1
     1 3 2 4 5

@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::fs;
 
 fn main() {
-        let input = "3   4
+    let input = "3   4
     4   3
     2   5
     1   3
@@ -36,6 +36,31 @@ fn parse_input(input: &str) -> (Vec<i32>, Vec<i32>) {
 
     vec1.sort();
     vec2.sort();
+    
+    //     let mut dial_at_zero = 0;
+    //     let mut dial_past_zero: i16 = 0;
+    // 
+    //     for instruction in input.lines() {
+    //         let direction = instruction.chars().next().unwrap();
+    //         let steps: String = instruction.chars().skip(1).collect();
+    //         let n_steps = steps.as_str().parse::<i16>().unwrap() % 100;
+    // 
+    //         let turns = (n_steps + position).div_floor(100);
+    //         println!("{n_steps} clicks {direction} from {position} {turns} turns total");
+    //         println!("{dial_past_zero} past zero");
+    // 
+    //         position = match direction {
+    //             'L' => position - n_steps,
+    //             'R' => position + n_steps,
+    //             _ => 0, // input error
+    //         };
+    //         
+    //         if position == 0 || position == 100 {
+    //             dial_at_zero += 1;
+    //         } else {
+    //             // do some calculations to check for dial_past_zero
+    //             // if old position is negative and new position is positive??
+    //         } 
 
     (vec1, vec2)
 }
